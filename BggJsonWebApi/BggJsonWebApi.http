@@ -1,0 +1,6 @@
+@BggJsonWebApiApp_HostAddress = http://localhost:5005
+
+GET {{BggJsonWebApiApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
