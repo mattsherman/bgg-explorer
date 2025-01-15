@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 
+import { ItemsList } from './components/ItemsList';
+import { Collection } from './types';
+
 function App() {
-  const [collection, setCollection] = useState(null);
+  const [collection, setCollection] = useState<Collection | undefined>();
 
   useEffect(() => {
     (async () => {
@@ -16,14 +19,7 @@ function App() {
 
   return (
     <>
-      <ul>
-        {collection &&
-          collection.items.map((item: any) => (
-            <li key={item.objectId}>
-              {item.name} ({item.yearPublished})
-            </li>
-          ))}
-      </ul>
+      <ItemsList items={collection?.items} />
     </>
   );
 }
