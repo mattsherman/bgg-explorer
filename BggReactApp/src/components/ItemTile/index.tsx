@@ -1,10 +1,22 @@
 import type { Item } from '../../types';
 
-export function ItemTile({ item }: { item: Item }) {
+import classes from './index.module.css';
+
+type ItemTileProps = {
+  item: Item;
+};
+
+console.log(classes);
+
+export function ItemTile({ item }: ItemTileProps) {
   return (
-    <figure>
-      <img src={item.thumbnail} alt={item.name} />
-      <figcaption>
+    <figure className={classes['item-tile']}>
+      <img
+        src={item.thumbnail}
+        alt={item.name}
+        className={classes['thumbnail']}
+      />
+      <figcaption className={classes['name']}>
         {item.name} ({item.yearPublished})
       </figcaption>
     </figure>
