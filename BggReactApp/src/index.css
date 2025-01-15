@@ -1,0 +1,13 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+
+  margin: 0;
+}
