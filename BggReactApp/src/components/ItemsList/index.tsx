@@ -1,5 +1,5 @@
-import type { Item } from '../types';
-import { ItemTile } from './ItemTile';
+import type { Item } from '../../types';
+import { ItemTile } from '../ItemTile';
 
 type ItemsListProps = {
   items?: Item[];
