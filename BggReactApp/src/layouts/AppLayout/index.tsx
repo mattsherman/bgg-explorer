@@ -1,14 +1,16 @@
 import { NavLink, Outlet } from 'react-router';
 
+import classes from './index.module.css';
+
 export function AppLayout() {
   return (
-    <div>
-      <header>
+    <div className={classes['app-layout']}>
+      <header className={classes['header']}>
         <h1>
           <NavLink to="/">BGG Explorer</NavLink>
         </h1>
       </header>
-      <section>
+      <section className={classes['sidebar']}>
         <div>Sidebar</div>
         <ul>
           <li>
@@ -19,10 +21,10 @@ export function AppLayout() {
           </li>
         </ul>
       </section>
-      <main>
+      <main className={classes['main']}>
         <Outlet />
       </main>
-      <footer>Footer</footer>
+      <footer className={classes['footer']}>Footer</footer>
     </div>
   );
 }
