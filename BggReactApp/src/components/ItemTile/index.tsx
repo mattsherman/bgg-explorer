@@ -6,8 +6,6 @@ type ItemTileProps = {
   item: Item;
 };
 
-console.log(classes);
-
 export function ItemTile({ item }: ItemTileProps) {
   return (
     <figure className={classes['item-tile']}>
