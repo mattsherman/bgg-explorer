@@ -1,3 +1,7 @@
+import { useParams } from 'react-router';
+
 export function UserCollection() {
-  return <div>User collection goes here</div>;
+  const params = useParams();
+
+  return <div>{params.username} collection goes here</div>;
 }
