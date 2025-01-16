@@ -19,11 +19,15 @@
 .sidebar {
     grid-area: sidebar;
 
+    overflow-y: auto;
+
     background: lightgray;
 }
 
 .main {
     grid-area: main;
+
+    overflow-y: auto;
 }
 
 .footer {

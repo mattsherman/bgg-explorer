@@ -14,10 +14,12 @@ export function AppLayout() {
         <div>Sidebar</div>
         <ul>
           <li>
-            <NavLink to="/mattsherman/collection">JAM's Collection</NavLink>
+            <NavLink to="/user/mattsherman/collection">
+              JAM's Collection
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/dccircuit/collection">Andy's Collection</NavLink>
+            <NavLink to="/user/dccircuit/collection">Andy's Collection</NavLink>
           </li>
         </ul>
       </section>

@@ -14,7 +14,10 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route element={<AppLayout />}>
           <Route index element={<AppHome />} />
-          <Route path=":username/collection" element={<UserCollection />} />
+          <Route
+            path="/user/:username/collection"
+            element={<UserCollection />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
