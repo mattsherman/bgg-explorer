@@ -1,4 +1,5 @@
 import type { Item } from '../../types';
+import { LazyLoadedImage } from '../LazyLoadedImage';
 
 import classes from './index.module.css';
 
@@ -9,12 +10,7 @@ type ItemTileProps = {
 export function ItemTile({ item }: ItemTileProps) {
   return (
     <figure className={classes['item-tile']}>
-      <img
-        src={item.thumbnail}
-        loading="lazy"
-        alt={item.name}
-        className={classes['thumbnail']}
-      />
+      <LazyLoadedImage src={item.thumbnail} className={classes['thumbnail']} />
       <figcaption className={classes['name']}>
         {item.name} ({item.yearPublished})
       </figcaption>
