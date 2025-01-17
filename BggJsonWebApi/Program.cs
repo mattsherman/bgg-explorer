@@ -99,6 +99,9 @@ public class Item
     [XmlAttribute("objectid")]
     public int ObjectId { get; set; }
 
+    [XmlAttribute("collid")]
+    public int CollectionId { get; set; }
+
     [XmlElement("name")]
     public required string Name { get; set; }
     
