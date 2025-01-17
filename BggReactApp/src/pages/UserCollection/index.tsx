@@ -18,9 +18,5 @@ export function UserCollection() {
     })();
   }, [params.username]);
 
-  return (
-    <>
-      <ItemsList items={collection?.items} />
-    </>
-  );
+  return <ItemsList items={collection?.items} />;
 }
