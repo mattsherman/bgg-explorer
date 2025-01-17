@@ -11,7 +11,7 @@ export function ItemsList({ items }: ItemsListProps) {
   return (
     <ul className={classes['items-list']}>
       {items?.map((item) => (
-        <li key={item.objectId}>
+        <li key={item.collectionId}>
           <ItemTile item={item} />
         </li>
       ))}
