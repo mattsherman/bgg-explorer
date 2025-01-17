@@ -9,6 +9,8 @@ export function UserCollection() {
   const params = useParams();
 
   useEffect(() => {
+    setCollection(undefined);
+
     (async () => {
       const res = await fetch(
         `http://localhost:5005/users/${params.username}/collection`
