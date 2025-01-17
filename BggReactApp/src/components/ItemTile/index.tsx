@@ -11,6 +11,7 @@ export function ItemTile({ item }: ItemTileProps) {
     <figure className={classes['item-tile']}>
       <img
         src={item.thumbnail}
+        loading="lazy"
         alt={item.name}
         className={classes['thumbnail']}
       />
