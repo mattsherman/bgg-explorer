@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +37,50 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("AllowReactApp");
+
+app.MapGet("/hot-items", async () => 
+{
+    var bggApiUrl = "https://boardgamegeek.com/xmlapi2/hot?type=boardgame";
+
+    var response = await httpClient.GetAsync(bggApiUrl);
+
+    if (!response.IsSuccessStatusCode)
+    {
+        return Results.Problem("Failed to retrieve hot items from BGG", statusCode: (int)response.StatusCode);
+    }
+
+    var xmlData = await response.Content.ReadAsStringAsync();
+
+    var serializer = new XmlSerializer(typeof(HotItems));
+
+    HotItems? hotItems;
+
+    try
+    {
+        using var stringReader = new StringReader(xmlData);
+        hotItems = (HotItems?)serializer.Deserialize(stringReader);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex);
+        return Results.Problem($"Failed to deserialize hot items from BGG: {ex.Message}");
+    }
+
+    if (hotItems is null)
+    {
+        return Results.Problem("No data found in XML response from BGG");
+    }
+
+    var items = hotItems.Items;
+
+    var result = new HotItemsResponse
+    {
+        Count = items.Count,
+        Items = items,
+    };
+
+    return Results.Ok(result);
+}).WithName("GetHotItems");
 
 app.MapGet("/users/{userName}/collection", async (string userName, int? minYearPublished) =>
 {
@@ -88,6 +133,49 @@ app.MapGet("/users/{userName}/collection", async (string userName, int? minYearP
 app.Run();
 
 [XmlRoot("items")]
+public class HotItems
+{
+    [XmlElement("item")]
+    public required List<HotItem> Items { get; set; }
+}
+
+public class HotItem
+{
+    [XmlAttribute("id")]
+    public int Id { get; set; }
+
+    [XmlAttribute("rank")]
+    public int Rank { get; set; }
+
+    [XmlElement("name")]
+    public required HotItemName Name { get; set; }
+    
+    [XmlElement("yearpublished")]
+    public required HotItemYearPublished YearPublished { get; set; }
+    
+    [XmlElement("thumbnail")]
+    public required HotItemThumbnail Thumbnail { get; set; }
+}
+
+public class HotItemName
+{
+    [XmlAttribute("value")]
+    public required string Value { get; set; }
+}
+
+public class HotItemYearPublished
+{
+    [XmlAttribute("value")]
+    public required int Value { get; set; }
+}
+
+public class HotItemThumbnail
+{
+    [XmlAttribute("value")]
+    public required string Value { get; set; }
+}
+
+[XmlRoot("items")]
 public class Collection 
 {
     [XmlAttribute("totalitems")]
@@ -116,6 +204,12 @@ public class Item
     
     [XmlElement("thumbnail")]
     public required string Thumbnail { get; set; }
+}
+
+public class HotItemsResponse
+{
+    public int Count { get; set; }
+    public List<HotItem>? Items { get; set; }
 }
 
 public class CollectionResponse
