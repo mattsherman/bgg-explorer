@@ -2,7 +2,12 @@ using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 using Microsoft.AspNetCore.Mvc;
 
-var httpClient = new HttpClient();
+var httpClientHandler = new HttpClientHandler
+{
+    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+};
+
+var httpClient = new HttpClient(httpClientHandler);
 
 var builder = WebApplication.CreateBuilder(args);
 
