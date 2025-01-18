@@ -2,6 +2,8 @@ using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 using Microsoft.AspNetCore.Mvc;
 
+var httpClient = new HttpClient();
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -34,8 +36,7 @@ app.MapGet("/users/{userName}/collection", async (string userName, int? minYearP
 {
     var bggApiUrl = $"https://boardgamegeek.com/xmlapi2/collection?username={userName}";
 
-    var client = new HttpClient();
-    var response = await client.GetAsync(bggApiUrl);
+    var response = await httpClient.GetAsync(bggApiUrl);
 
     if (!response.IsSuccessStatusCode)
     {
