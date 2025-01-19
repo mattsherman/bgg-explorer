@@ -9,11 +9,16 @@ type ItemTileProps = {
 
 export function ItemTile({ item }: ItemTileProps) {
   return (
-    <figure className={classes['item-tile']}>
-      <LazyLoadedImage src={item.thumbnail} className={classes['thumbnail']} />
-      <figcaption className={classes['name']}>
-        {item.name} ({item.yearPublished})
-      </figcaption>
-    </figure>
+    <a href={item.pageUrl} target="_blank" className={classes['item-tile']}>
+      <figure>
+        <LazyLoadedImage
+          src={item.thumbnail}
+          className={classes['thumbnail']}
+        />
+        <figcaption className={classes['name']}>
+          {item.name} ({item.yearPublished})
+        </figcaption>
+      </figure>
+    </a>
   );
 }

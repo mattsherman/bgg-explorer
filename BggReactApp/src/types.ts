@@ -5,6 +5,7 @@ export type Item = {
   yearPublished: number;
   thumbnail: string;
   image: string;
+  pageUrl: string;
 };
 
 export type Collection = {
