@@ -6,7 +6,7 @@
     grid-template-areas:
         "sidebar main";
 
-    @media (max-width: 500px) {
+    @media (max-width: 768px) {
         grid-template-columns: 1fr;
         grid-template-areas:
             "main";
@@ -16,11 +16,14 @@
 .sidebar {
     grid-area: sidebar;
 
+    width: 250px;
+
     overflow-y: auto;
 
-    background: lightgray;
+    background: rgb(240,240,240);
+    border-right: 1px solid rgb(220,220,220);
 
-    @media (max-width: 500px) {
+    @media (max-width: 768px) {
         display: none;
     }
 }
