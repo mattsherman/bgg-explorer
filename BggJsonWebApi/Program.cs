@@ -72,9 +72,9 @@ app.MapGet("/hot-items", async () =>
         return Results.Problem("No data found in XML response from BGG");
     }
 
-    var items = hotItems.Items;
+    var items = hotItems.Items.Select(BggXmlApi2.Converters.ConvertToItem).ToList();
 
-    var result = new HotItemsResponse
+    var result = new Collection
     {
         Count = items.Count,
         Items = items,
@@ -132,9 +132,3 @@ app.MapGet("/users/{userName}/collection", async (string userName, int? minYearP
 }).WithName("GetCollection");
 
 app.Run();
-
-public class HotItemsResponse
-{
-    public int Count { get; set; }
-    public List<BggXmlApi2.HotItem>? Items { get; set; }
-}
