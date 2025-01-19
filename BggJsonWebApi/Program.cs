@@ -1,7 +1,7 @@
 using System.Net;
-using System.Text.Json.Serialization;
 using System.Xml.Serialization;
-using Microsoft.AspNetCore.Mvc;
+
+using BggXmlApi2 = BggJsonWebApi.Models.BggXmlApi2;
 
 var httpClientHandler = new HttpClientHandler
 {
@@ -51,14 +51,14 @@ app.MapGet("/hot-items", async () =>
 
     var xmlData = await response.Content.ReadAsStringAsync();
 
-    var serializer = new XmlSerializer(typeof(HotItems));
+    var serializer = new XmlSerializer(typeof(BggXmlApi2.HotItems));
 
-    HotItems? hotItems;
+    BggXmlApi2.HotItems? hotItems;
 
     try
     {
         using var stringReader = new StringReader(xmlData);
-        hotItems = (HotItems?)serializer.Deserialize(stringReader);
+        hotItems = (BggXmlApi2.HotItems?)serializer.Deserialize(stringReader);
     }
     catch (Exception ex)
     {
@@ -95,14 +95,14 @@ app.MapGet("/users/{userName}/collection", async (string userName, int? minYearP
 
     var xmlData = await response.Content.ReadAsStringAsync();
 
-    var serializer = new XmlSerializer(typeof(Collection));
+    var serializer = new XmlSerializer(typeof(BggXmlApi2.Collection));
 
-    Collection? collection;
+    BggXmlApi2.Collection? collection;
 
     try
     {
         using var stringReader = new StringReader(xmlData);
-        collection = (Collection?)serializer.Deserialize(stringReader);
+        collection = (BggXmlApi2.Collection?)serializer.Deserialize(stringReader);
     }
     catch (Exception ex)
     {
@@ -132,88 +132,16 @@ app.MapGet("/users/{userName}/collection", async (string userName, int? minYearP
 
 app.Run();
 
-[XmlRoot("items")]
-public class HotItems
-{
-    [XmlElement("item")]
-    public required List<HotItem> Items { get; set; }
-}
 
-public class HotItem
-{
-    [XmlAttribute("id")]
-    public int Id { get; set; }
-
-    [XmlAttribute("rank")]
-    public int Rank { get; set; }
-
-    [XmlElement("name")]
-    public required HotItemName Name { get; set; }
-    
-    [XmlElement("yearpublished")]
-    public required HotItemYearPublished YearPublished { get; set; }
-    
-    [XmlElement("thumbnail")]
-    public required HotItemThumbnail Thumbnail { get; set; }
-}
-
-public class HotItemName
-{
-    [XmlAttribute("value")]
-    public required string Value { get; set; }
-}
-
-public class HotItemYearPublished
-{
-    [XmlAttribute("value")]
-    public required int Value { get; set; }
-}
-
-public class HotItemThumbnail
-{
-    [XmlAttribute("value")]
-    public required string Value { get; set; }
-}
-
-[XmlRoot("items")]
-public class Collection 
-{
-    [XmlAttribute("totalitems")]
-    public int TotalItems { get; set; }
-
-    [XmlAttribute("pubdate")]
-    public required string PubDate { get; set; }
-
-    [XmlElement("item")]
-    public required List<Item> Items { get; set; }    
-}
-
-public class Item
-{
-    [XmlAttribute("objectid")]
-    public int ObjectId { get; set; }
-
-    [XmlAttribute("collid")]
-    public int CollectionId { get; set; }
-
-    [XmlElement("name")]
-    public required string Name { get; set; }
-    
-    [XmlElement("yearpublished")]
-    public int YearPublished { get; set; }
-    
-    [XmlElement("thumbnail")]
-    public required string Thumbnail { get; set; }
-}
 
 public class HotItemsResponse
 {
     public int Count { get; set; }
-    public List<HotItem>? Items { get; set; }
+    public List<BggXmlApi2.HotItem>? Items { get; set; }
 }
 
 public class CollectionResponse
 {
     public int Count { get; set; }
-    public List<Item>? Items { get; set; }
+    public List<BggXmlApi2.Item>? Items { get; set; }
 }
