@@ -11,4 +11,10 @@ public class Item
     public int YearPublished { get; set; }
     
     public required string Thumbnail { get; set; }
+
+    public string PageUrl {
+        get {
+            return $"https://boardgamegeek.com/boardgame/{ObjectId}";
+        }
+    }
 }
