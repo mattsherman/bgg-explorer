@@ -1,6 +1,7 @@
 using System.Net;
 using System.Xml.Serialization;
 
+using BggJsonWebApi.Models;
 using BggXmlApi2 = BggJsonWebApi.Models.BggXmlApi2;
 
 var httpClientHandler = new HttpClientHandler
@@ -114,14 +115,14 @@ app.MapGet("/users/{userName}/collection", async (string userName, int? minYearP
         return Results.Problem("No data found in XML response from BGG");
     }
 
-    var items = collection.Items;
+    var items = collection.Items.Select(BggXmlApi2.Converters.ConvertToItem).ToList();
 
     if (minYearPublished.HasValue)
     {
         items = items.Where(i => i.YearPublished >= minYearPublished).ToList();
     }
 
-    var result = new CollectionResponse
+    var result = new Collection
     {
         Count = items.Count,
         Items = items,
@@ -132,16 +133,8 @@ app.MapGet("/users/{userName}/collection", async (string userName, int? minYearP
 
 app.Run();
 
-
-
 public class HotItemsResponse
 {
     public int Count { get; set; }
     public List<BggXmlApi2.HotItem>? Items { get; set; }
-}
-
-public class CollectionResponse
-{
-    public int Count { get; set; }
-    public List<BggXmlApi2.Item>? Items { get; set; }
 }
