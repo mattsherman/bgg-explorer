@@ -1,0 +1,5 @@
+.main-menu-wrapper {
+  @media (min-width: 501px) {
+    display: none;
+  }
+}
