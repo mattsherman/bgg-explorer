@@ -14,6 +14,9 @@ export function AppLayout() {
         <div>Sidebar</div>
         <ul>
           <li>
+            <NavLink to="/hot-items">Hot Items</NavLink>
+          </li>
+          <li>
             <NavLink to="/user/mattsherman/collection">
               JAM's Collection
             </NavLink>
