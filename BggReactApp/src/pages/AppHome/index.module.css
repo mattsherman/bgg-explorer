@@ -1,4 +1,10 @@
+.app-home {
+  height: 100%;
+}
+
 .main-menu-wrapper {
+  height: 100%;
+
   @media (min-width: 769px) {
     display: none;
   }
