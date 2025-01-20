@@ -1,0 +1,56 @@
+.main-sidebar {
+  height: 100%;
+
+  padding-top: 20px;
+
+  overflow-y: auto;
+
+  background: rgb(240,240,240);
+  border-right: 1px solid rgb(220,220,220);
+
+  menu {
+    list-style: none;
+    padding: 0;
+
+    li a {
+      display: block;
+     
+      padding: 10px 20px;
+
+      color: purple;
+      text-decoration: none;
+
+      &:focus,
+      &:hover {
+        text-decoration: underline;
+
+        background: rgb(220,220,220);
+      }
+
+      &.active {
+        background: rgb(200,200,200);
+      }
+    }
+  }
+
+  .home-link a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 150px;
+
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+  .sub-menu {
+    margin-top: 20px;
+
+    header {
+      padding: 10px 20px;
+
+      color: rgb(80, 80, 80);
+    }
+  }
+}

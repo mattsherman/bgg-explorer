@@ -1,19 +1,24 @@
 import { NavLink } from 'react-router';
 
+import classes from './index.module.css';
+
 export function MainSidebar() {
   return (
-    <div>
-      <header>
-        <h1>
-          <NavLink to="/">BGG Explorer</NavLink>
-        </h1>
-      </header>
+    <nav className={classes['main-sidebar']}>
       <menu>
-        <li>
-          <NavLink to="/hot-items">Hot Items</NavLink>
+        <li className={classes['home-link']}>
+          <NavLink to="/">BGG Explorer</NavLink>
         </li>
-        <li>
-          User Collections
+        <li className={classes['sub-menu']}>
+          <header>Global Collections</header>
+          <menu>
+            <li>
+              <NavLink to="/hot-items">Hot Items</NavLink>
+            </li>
+          </menu>
+        </li>
+        <li className={classes['sub-menu']}>
+          <header>User Collections</header>
           <menu>
             <li>
               <NavLink to="/user/mattsherman/collection">JAM</NavLink>
@@ -24,6 +29,6 @@ export function MainSidebar() {
           </menu>
         </li>
       </menu>
-    </div>
+    </nav>
   );
 }
