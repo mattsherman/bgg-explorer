@@ -6,3 +6,7 @@ quote_type = single
 [*.css]
 indent_style = space
 indent_size = 2
+
+[*.md]
+indent_style = space
+indent_size = 2
