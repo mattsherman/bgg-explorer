@@ -19,7 +19,8 @@ The project consists of two parts:
 ## Client-Side Web Application (BggReactApp)
 
 - Implemented in TypeScript using [React](https://reactjs.org/)
-- CSS is written as CSS Modules
+- Uses [React Router](https://reactrouter.com/) for routing
+- CSS is written as [CSS Modules](https://github.com/css-modules/css-modules)
 - Uses [Vite](https://vite.dev) for development and build tooling
 - Uses [Remix Icon](https://remixicon.com/) for icons
 
