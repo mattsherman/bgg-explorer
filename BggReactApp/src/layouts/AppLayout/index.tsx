@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 
-import { MainMenu } from '../../components/MainMenu';
+import { MainSidebar } from '../../components/MainSidebar';
 
 import classes from './index.module.css';
 
@@ -8,7 +8,7 @@ export function AppLayout() {
   return (
     <div className={classes['app-layout']}>
       <section className={classes['sidebar']}>
-        <MainMenu />
+        <MainSidebar />
       </section>
       <main className={classes['main']}>
         <Outlet />

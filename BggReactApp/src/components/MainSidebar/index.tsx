@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router';
 
-export function MainMenu() {
+export function MainSidebar() {
   return (
-    <>
+    <div>
       <header>
         <h1>
           <NavLink to="/">BGG Explorer</NavLink>
@@ -24,6 +24,6 @@ export function MainMenu() {
           </ul>
         </li>
       </ul>
-    </>
+    </div>
   );
 }
