@@ -8,22 +8,22 @@ export function MainSidebar() {
           <NavLink to="/">BGG Explorer</NavLink>
         </h1>
       </header>
-      <ul>
+      <menu>
         <li>
           <NavLink to="/hot-items">Hot Items</NavLink>
         </li>
         <li>
           User Collections
-          <ul>
+          <menu>
             <li>
               <NavLink to="/user/mattsherman/collection">JAM</NavLink>
             </li>
             <li>
               <NavLink to="/user/dccircuit/collection">Andy</NavLink>
             </li>
-          </ul>
+          </menu>
         </li>
-      </ul>
+      </menu>
     </div>
   );
 }
